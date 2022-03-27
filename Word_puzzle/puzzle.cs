@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace Word_puzzle
 {
-    internal class puzzle
+    public class puzzle
     {
 
-      public char[,] puzzle_Builder(int row, int col){ char[,] puzzle = new char[row, col]; return puzzle; }
+      public char[,] Create_puzzle(int size){ char[,] wordPuzzle = new char[size, size]; return wordPuzzle; }
 
-     //   void()
+     public void puzzleBuilder(int size, char[,] wordPuzzle)
+        {
+            letter_frequency getDict = new letter_frequency();
+            letter_frequency[] LetterFrequencyChart = getDict.Freq_Map();
+            for (int i = 0; i < 26; i++)
+            {
+                Console.WriteLine(LetterFrequencyChart[i].Letter);
+            }
+        }
+   
     }
 }

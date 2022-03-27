@@ -4,18 +4,24 @@ namespace Word_puzzle // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
-        enum characters { a,};
+     
         static void Main(string[] args)
         {
             var Randomizer = new Random();
             char playAgain = 'y';
-            Console.WriteLine("Welcome to Random Word Search Puzzle Game");
+            Console.WriteLine("Welcome to Random Word Search Puzzle Game!");
             while (playAgain == 'y')
             {
-                var RandomWordPuzzleSize = Randomizer.Next(5, 21);
+                var RandomWordPuzzleSize = Randomizer.Next(15, 46);
+                
 
-                puzzle puzzle = new puzzle();
-                char[,] SearchPuzzle = puzzle.puzzle_Builder(RandomWordPuzzleSize,RandomWordPuzzleSize);
+                puzzle New_puzzle = new puzzle();
+                char[,] SearchPuzzle = New_puzzle.Create_puzzle(RandomWordPuzzleSize);
+                New_puzzle.puzzleBuilder(RandomWordPuzzleSize, SearchPuzzle);
+
+                Console.WriteLine("Would you like to play again? Enter y to continue and n to exit.");
+                playAgain = Console.ReadLine()[0];
+
             }
      
         }
