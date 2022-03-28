@@ -10,16 +10,44 @@ namespace Word_puzzle
     {
 
       public char[,] Create_puzzle(int size){ char[,] wordPuzzle = new char[size, size]; return wordPuzzle; }
-
+        public int Pull_Random_Value()
+        { 
+            int RandomValue = new Random().Next(0, 1000000 + 1);
+           
+            return RandomValue;
+            
+        }
      public void puzzleBuilder(int size, char[,] wordPuzzle)
-        {
+     {
+         
+            int GenerateValue = 0;
             letter_frequency getDict = new letter_frequency();
-            letter_frequency[] LetterFrequencyChart = getDict.Freq_Map();
-            for (int i = 0; i < 26; i++)
+            letter_frequency[] LetterFrequencyChart = new letter_frequency[26];
+            LetterFrequencyChart =  getDict.Freq_Data();
+            for(int i = 0; i < size; i++)
             {
-                Console.WriteLine(LetterFrequencyChart[i].Letter);
+                for(int j = 0; j < size;j++)
+                {
+                    GenerateValue = Pull_Random_Value();
+                    wordPuzzle[i, j] = getDict.FreqMapper(LetterFrequencyChart, 0, GenerateValue);
+                  
+                }
+            }
+            
+     }
+     public void outputPuzzle(char[,] wordPuzzle, int size)
+        {
+         
+            for(int i = 0; i < size;i++)
+            {
+                for(int j = 0; j < size;j++)
+                {
+                    Console.Write(wordPuzzle[i, j] + " ");
+                }
+                Console.WriteLine();
             }
         }
+
    
     }
 }
