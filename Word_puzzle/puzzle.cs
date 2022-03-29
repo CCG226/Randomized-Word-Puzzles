@@ -54,11 +54,12 @@ namespace Word_puzzle
             using (StreamReader sr = new StreamReader(@"words.txt"))
             {
                 string Data = sr.ReadToEnd();
-                if(Data.Contains(word))
+                if(Data.Contains(word) && word != " " && word != "")
                 {
-                    Console.WriteLine("No");
+                    
                     return true;
                 }
+                
                 return false;
             }
         }

@@ -10,36 +10,51 @@ namespace Word_puzzle // Note: actual namespace depends on the project name.
             bool wordIsValid;
             int holdPuzzleCount = 0;
             var Randomizer = new Random();
-            char playAgain = 'y';
+            bool canGameContinue = true;
+            bool foundWord = false;
             int Score = 0;
             string word = " ";
             Console.WriteLine("Welcome to Random Word Search Puzzle Game!");
             Console.WriteLine();
-            Console.WriteLine("Goal: Enter as many valid words as you can find in each puzzzle");
-            Console.WriteLine("Each word is worth a 100 points");
+            Console.WriteLine("Goal: Enter as many valid words as you can find in the Word Search puzzle");
+            Console.WriteLine("Each word is worth 10 points per letter in the word");
+            Console.WriteLine("Example: car (c + a + r) is worth 30 points");
             
             
-            while (playAgain == 'y')
-            {
-                holdPuzzleCount++;
-                var RandomWordPuzzleSize = Randomizer.Next(15, 36);
-                puzzle New_puzzle = new puzzle();
-                char[,] SearchPuzzle = New_puzzle.Create_puzzle(RandomWordPuzzleSize);
+            holdPuzzleCount++;
+            var RandomWordPuzzleSize = Randomizer.Next(15, 36);
+            puzzle New_puzzle = new puzzle();
+            char[,] SearchPuzzle = New_puzzle.Create_puzzle(RandomWordPuzzleSize);
               
-                New_puzzle.puzzleBuilder(RandomWordPuzzleSize, SearchPuzzle);
-
+            New_puzzle.puzzleBuilder(RandomWordPuzzleSize, SearchPuzzle);
+            while (canGameContinue == true)
+            {
                 Console.WriteLine();
-                Console.WriteLine("Current score:" + Score);
-                Console.WriteLine("Puzzle: " + holdPuzzleCount);
+                Console.WriteLine("Current score: " + Score);
+
+
                 New_puzzle.outputPuzzle(SearchPuzzle, RandomWordPuzzleSize);
                 Console.WriteLine();
+
                 Console.WriteLine("Enter a valid word");
                 word = Console.ReadLine();
                 wordIsValid = New_puzzle.DoesWordExist(word);
-
-                Console.WriteLine("Would you like to play again? Enter y to continue and n to exit.");
-                playAgain = Console.ReadLine()[0];
-
+                if(!wordIsValid)
+                {
+                    Console.WriteLine("That word does not exist in the Dictionary.");
+                    canGameContinue = false;
+                }
+                else
+                {
+                    foundWord = New_puzzle.isWordinPuzzle(SearchPuzzle, RandomWordPuzzleSize, word);
+                    if(foundWord == true)
+                    {
+                        Console.WriteLine("Success");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Failure");                    }
+                    }
             }
      
         }
