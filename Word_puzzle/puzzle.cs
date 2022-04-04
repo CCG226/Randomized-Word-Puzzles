@@ -21,7 +21,7 @@ namespace Word_puzzle
         {
 
             int GenerateValue = 0;
-            letter_frequency getDict = new letter_frequency();//used to call methods
+            letter_frequency getDict = new letter_frequency();
             letter_frequency[] LetterFrequencyChart = new letter_frequency[26];//will holds letters and their frequncy ranges 
             LetterFrequencyChart = getDict.Freq_Data();//build data range 
             for (int i = 0; i < size; i++)
@@ -29,7 +29,7 @@ namespace Word_puzzle
                 for (int j = 0; j < size; j++)
                 {
                     GenerateValue = Pull_Random_Value();//get a random value 
-                    wordPuzzle[i, j] = getDict.FreqMapper(LetterFrequencyChart, 0, GenerateValue);//pull a letter based on the random value and the letters frequency range
+                    wordPuzzle[i, j] = letter_frequency.FreqMapper(LetterFrequencyChart, 0, GenerateValue);//pull a letter based on the random value and the letters frequency range
 
                 }
             }

@@ -8,7 +8,7 @@ namespace Word_puzzle
 {
     public partial class letter_frequency
     {
-        public char FreqMapper(letter_frequency[] Potential_Character, int pos, int RandomValue)
+        public static char FreqMapper(letter_frequency[] Potential_Character, int pos, int RandomValue)
         {
             char Generated_Character = ' ';
             bool hasFoundCharacter = false;

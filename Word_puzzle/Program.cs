@@ -37,6 +37,7 @@ namespace Word_puzzle // Note: actual namespace depends on the project name.
 
                 Console.WriteLine("Enter a valid word");
                 word = Console.ReadLine();
+                word =word.ToLower();
                 wordIsValid = New_puzzle.DoesWordExist(word);//is word in dictionary and big enough?
                 if(!wordIsValid)
                 {
